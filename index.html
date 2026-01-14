@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vet 2°rcg System - Redirecionando</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+        }
+        
+        .redirect-container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #2c7fb8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            color: #2c7fb8;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .security-notice {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+            border-left: 4px solid #2c7fb8;
+        }
+        
+        .security-notice strong {
+            color: #2c7fb8;
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-container">
+        <div class="loading-spinner"></div>
+        <h1>Vet 2°rcg System</h1>
+        <p>Redirecionando para a tela de login...</p>
+        
+        <div class="security-notice">
+            <strong>Medida de Segurança:</strong><br>
+            Autenticação obrigatória para acesso ao sistema
+        </div>
+        
+        <p><small>Se o redirecionamento não funcionar, <a href="login.html" id="manualRedirect">clique aqui</a></small></p>
+    </div>
+
+    <script>
+        // SEMPRE limpar o localStorage ao iniciar o sistema
+        // Isso garante que o usuário sempre passe pelo login
+        localStorage.clear();
+        
+        // Também limpar sessionStorage para garantir
+        sessionStorage.clear();
+        
+        // Adicionar mensagem no console para depuração
+        console.log('Sistema Veterinário: Redirecionando para login...');
+        console.log('Sessão anterior foi limpa por segurança.');
+        
+        // Redirecionar para a página de login após 2 segundos
+        setTimeout(function() {
+            window.location.href = 'login.html';
+        }, 2000);
+        
+        // Redirecionar imediatamente se o usuário clicar em qualquer lugar
+        document.addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+        
+        // Também permitir clique no link manual
+        document.getElementById('manualRedirect').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'login.html';
+        });
+        
+        // Redirecionar também se pressionar qualquer tecla
+        document.addEventListener('keydown', function() {
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
