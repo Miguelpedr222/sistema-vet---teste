@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Veterinário - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #2c7fb8, #7fcdbb);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .logo-image {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background-color: #f0f8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #2c7fb8;
+            overflow: hidden;
+        }
+        
+        .logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .logo h1 {
+            color: #2c7fb8;
+            font-size: 26px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .logo p {
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            border-color: #2c7fb8;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(44, 127, 184, 0.2);
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            padding: 5px;
+        }
+        
+        .toggle-password:hover {
+            color: #2c7fb8;
+        }
+        
+        .btn-login {
+            background: linear-gradient(to right, #2c7fb8, #7fcdbb);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(44, 127, 184, 0.3);
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(44, 127, 184, 0.4);
+        }
+        
+        .permissions-info {
+            margin-top: 25px;
+            padding: 18px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+            border-left: 4px solid #2c7fb8;
+        }
+        
+        .permissions-info h3 {
+            color: #2c7fb8;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .permissions-info ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .permissions-info li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .permissions-info li:before {
+            content: "•";
+            color: #2c7fb8;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+            padding: 10px;
+            background-color: #ffeaea;
+            border-radius: 5px;
+        }
+        
+        .success-message {
+            color: #27ae60;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+            padding: 10px;
+            background-color: #eafaf1;
+            border-radius: 5px;
+        }
+        
+        .password-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
+            }
+            
+            .logo-image {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo h1 {
+                font-size: 22px;
+            }
+        }
+        
+        /* Estilo para alerta de permissão */
+        .permission-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideInRight 0.3s ease;
+            max-width: 400px;
+        }
+        
+        .permission-alert.warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+        
+        .permission-alert.info {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .permission-alert-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        
+        .permission-alert-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Animações para transição suave */
+        .fade-out {
+            animation: fadeOut 0.5s ease forwards;
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <div class="logo-image">
+                <img src="2-rcg-926x926 (1).jpg" alt="Logo Veterinária" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iNjAiIGZpbGw9IiMyYzdmYjgiLz4KPHRleHQgeD0iNjAiIHk9IjYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+VmV0PC90ZXh0Pgo8L3N2Zz4K'">
+            </div>
+            <h1>Vet 2°rcg System</h1>
+            <p>Sistema de Gestão Veterinária</p>
+        </div>
+        
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="role">Cargo</label>
+                <select id="role" required>
+                    <option value="">Selecione seu cargo</option>
+                    <option value="admin">Administrador (Ten)</option>
+                    <option value="moderador">Moderador (Aux, Enf)</option>
+                    <option value="visitante">Visitante (Estagiário)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" placeholder="Digite seu usuário" required>
+                <select id="adminUsers" style="display: none; margin-top: 10px;">
+                    <option value="">Selecione um administrador</option>
+                    <option value="Maj. Cristovam">Maj. Cristovam</option>
+                    <option value="Ten. Henrique">Ten. Henrique</option>
+                    <option value="Ten. Espinho">Ten. Espinho</option>
+                    <option value="Ten. Aragon">Ten. Aragon</option>
+                    <option value="Ten. Andressa">Ten. Andressa</option>
+                    <option value="Ten. Thayanne">Ten. Thayanne</option>
+                </select>
+                <select id="moderadorUsers" style="display: none; margin-top: 10px;">
+                    <option value="">Selecione um moderador</option>
+                    <option value="CB De Lima">CB De Lima</option>
+                    <option value="CB Bittencourt">CB Bittencourt</option>
+                    <option value="SD Vergílio">SD Vergílio</option>
+                    <option value="SD Cardoso">SD Cardoso</option>
+                    <option value="SD André Vitoria">SD André Vitoria</option>
+                    <option value="SD Luiz Furtado">SD Luiz Furtado</option>
+                    <option value="SD Martins Silva">SD Martins Silva</option>
+                    <option value="SD Silva">SD Silva</option>
+                    <option value="SD Luiz">SD Luiz</option>
+                    <option value="SD Silva Custodio">SD Silva Custodio</option>
+                    <option value="SD Humberto Neto">SD Humberto Neto</option>
+                    <option value="SD Aquiles">SD Aquiles</option>
+                    <option value="SD Martins Ramos">SD Martins Ramos</option>
+                    <option value="SD Andrade Magalhães">SD Andrade Magalhães</option>
+                    <option value="SD Nicollas Duarte">SD Nicollas Duarte</option>
+                    <option value="SD Lucena">SD Lucena</option>
+                    <option value="SD João Pedrosa">SD João Pedrosa</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Digite a senha do seu cargo" required>
+                    <button type="button" class="toggle-password" id="togglePassword">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="password-hint" id="passwordHint"></div>
+            </div>
+            
+            <button type="submit" class="btn-login">Entrar no Sistema</button>
+            
+            <div class="error-message" id="errorMessage">
+                Senha incorreta para este cargo. Tente novamente.
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                Login realizado com sucesso! Redirecionando...
+            </div>
+        </form>
+        
+        <div class="permissions-info">
+            <h3>Permissões do Sistema</h3>
+            <ul>
+                <li><strong>Administrador (Ten):</strong> Acesso total</li>
+                <li><strong>Moderador (Aux, Enf):</strong> Acesso limitado</li>
+                <li><strong>Visitante (Estagiário):</strong> Apenas consulta</li>
+            </ul>
+            <p style="margin-top: 10px; font-size: 12px; color: #666;">
+                <strong>Aviso:</strong> Ações não permitidas mostrarão mensagem de erro. Entre em contato com o oficial veterinaria para qualquer alteração.
+            </p>
+        </div>
+        
+        <div class="footer">
+            &copy; 2025 Vet2°rcg System - Todos os direitos reservados
+        </div>
+    </div>
+
+    <script>
+        // ========== CONFIGURAÇÕES DE LOGIN ==========
+        // Senhas para cada tipo de permissão
+        const passwords = {
+            'admin': 'admin123',
+            'moderador': 'mod456',
+            'visitante': 'estag789'
+        };
+        
+        // Dicas de senha para cada cargo (SEM MOSTRAR A SENHA)
+        const passwordHints = {
+            'admin': 'Digite a senha do Administrador',
+            'moderador': 'Digite a senha do Moderador',
+            'visitante': 'Digite a senha do Visitante'
+        };
+        
+        // ========== ELEMENTOS DO DOM ==========
+        const roleSelect = document.getElementById('role');
+        const usernameInput = document.getElementById('username');
+        const adminUsersSelect = document.getElementById('adminUsers');
+        const moderadorUsersSelect = document.getElementById('moderadorUsers');
+        const passwordInput = document.getElementById('password');
+        const passwordHint = document.getElementById('passwordHint');
+        const togglePassword = document.getElementById('togglePassword');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const loginForm = document.getElementById('loginForm');
+        const loginContainer = document.querySelector('.login-container');
+        
+        // ========== FUNÇÕES DE LOGIN ==========
+        
+        function initLoginPage() {
+            // Sempre focar no campo de cargo ao carregar a página
+            roleSelect.focus();
+            
+            // Limpar mensagens
+            hideMessages();
+            
+            // Adicionar evento para mudança de cargo
+            roleSelect.addEventListener('change', handleRoleChange);
+            
+            // Preencher automaticamente o campo de usuário quando selecionar um administrador
+            adminUsersSelect.addEventListener('change', function() {
+                if (this.value) {
+                    usernameInput.value = this.value;
+                }
+            });
+            
+            // Preencher automaticamente o campo de usuário quando selecionar um moderador
+            moderadorUsersSelect.addEventListener('change', function() {
+                if (this.value) {
+                    usernameInput.value = this.value;
+                }
+            });
+            
+            // Alternar visibilidade da senha
+            togglePassword.addEventListener('click', togglePasswordVisibility);
+            
+            // Processar o formulário de login
+            loginForm.addEventListener('submit', handleLoginSubmit);
+            
+            // Limpar mensagens quando o usuário começar a digitar
+            usernameInput.addEventListener('input', hideMessages);
+            passwordInput.addEventListener('input', hideMessages);
+            
+            // Permitir login com Enter
+            document.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.target.matches('select')) {
+                    loginForm.dispatchEvent(new Event('submit'));
+                }
+            });
+            
+            // Exibir mensagem de boas-vindas
+            console.log('Sistema Veterinário - Tela de Login carregada');
+        }
+        
+        function handleRoleChange() {
+            const selectedRole = this.value;
+            
+            // Limpar mensagens de erro/sucesso
+            hideMessages();
+            
+            // Atualizar dica de senha (SEM MOSTRAR A SENHA)
+            if (selectedRole && passwordHints[selectedRole]) {
+                passwordHint.textContent = passwordHints[selectedRole];
+            } else {
+                passwordHint.textContent = '';
+            }
+            
+            // Resetar todos os selects e inputs
+            usernameInput.style.display = 'block';
+            usernameInput.required = true;
+            adminUsersSelect.style.display = 'none';
+            adminUsersSelect.required = false;
+            moderadorUsersSelect.style.display = 'none';
+            moderadorUsersSelect.required = false;
+            usernameInput.value = '';
+            adminUsersSelect.value = '';
+            moderadorUsersSelect.value = '';
+            
+            // Mostrar o select apropriado baseado no cargo
+            if (selectedRole === 'admin') {
+                usernameInput.style.display = 'none';
+                adminUsersSelect.style.display = 'block';
+                adminUsersSelect.required = true;
+                usernameInput.required = false;
+                adminUsersSelect.focus();
+            } else if (selectedRole === 'moderador') {
+                usernameInput.style.display = 'none';
+                moderadorUsersSelect.style.display = 'block';
+                moderadorUsersSelect.required = true;
+                usernameInput.required = false;
+                moderadorUsersSelect.focus();
+            } else {
+                usernameInput.focus();
+            }
+        }
+        
+        function togglePasswordVisibility() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Alterar ícone do olho
+            if (type === 'text') {
+                this.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.94 17.94C16.2306 19.243 14.1491 19.9649 12 20C5 20 1 12 1 12C2.24389 9.68192 3.96914 7.65663 6.06 6.06006M9.9 4.24006C10.5883 4.0789 11.2931 3.99836 12 4.00006C19 4.00006 23 12 23 12C22.393 13.1356 21.6691 14.2048 20.84 15.19M14.12 14.12C13.8454 14.4148 13.5141 14.6512 13.1462 14.8151C12.7782 14.9791 12.3809 15.0673 11.9781 15.0744C11.5753 15.0815 11.1752 15.0074 10.8016 14.8565C10.4281 14.7056 10.0887 14.4811 9.80385 14.1962C9.51897 13.9113 9.29439 13.572 9.14351 13.1984C8.99262 12.8249 8.91853 12.4247 8.92563 12.0219C8.93274 11.6191 9.02091 11.2219 9.18488 10.8539C9.34884 10.4859 9.58525 10.1547 9.88 9.88006" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M1 1L23 23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                `;
+            } else {
+                this.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                `;
+            }
+        }
+        
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            
+            const role = roleSelect.value;
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+            
+            // Validar se todos os campos foram preenchidos
+            if (!role) {
+                showError('Por favor, selecione um cargo.');
+                roleSelect.focus();
+                return;
+            }
+            
+            if (!username) {
+                showError('Por favor, preencha o usuário.');
+                usernameInput.focus();
+                return;
+            }
+            
+            if (!password) {
+                showError('Por favor, preencha a senha.');
+                passwordInput.focus();
+                return;
+            }
+            
+            // Verificar se a senha está correta para o cargo selecionado
+            if (password === passwords[role]) {
+                // Login bem-sucedido
+                hideMessages();
+                successMessage.style.display = 'block';
+                
+                // Salvar informações do usuário no localStorage
+                localStorage.setItem('currentUser', username);
+                localStorage.setItem('userRole', role);
+                localStorage.setItem('loginTime', new Date().toISOString());
+                
+                // Definir permissões baseadas no cargo
+                const permissions = getPermissionsByRole(role);
+                
+                // Salvar permissões no localStorage
+                localStorage.setItem('userPermissions', JSON.stringify(permissions));
+                
+                // Adicionar efeito visual de saída
+                if (loginContainer) {
+                    loginContainer.classList.add('fade-out');
+                }
+                
+                // Mensagem de log
+                console.log(`Login realizado: ${username} (${role})`);
+                
+                // Redirecionar para a tela do sistema após 1 segundo
+                setTimeout(function() {
+                    window.location.href = 'sistema.html';
+                }, 1000);
+            } else {
+                // Senha incorreta
+                showError('Senha incorreta para este cargo. Tente novamente.');
+                
+                // Efeito visual para erro
+                loginForm.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    loginForm.style.animation = '';
+                    passwordInput.focus();
+                    passwordInput.select();
+                }, 500);
+                
+                // Log de tentativa falha
+                console.warn(`Tentativa de login falhou para: ${username} (${role})`);
+            }
+        }
+        
+        function getPermissionsByRole(role) {
+            let permissions = {
+                canEditFichas: false,
+                canCreateFichas: false,
+                canDeleteFichas: false,
+                canCreateCadernoVisitas: false,
+                canEditCadernoVisitas: false,
+                canViewAll: false,
+                roleName: ''
+            };
+            
+            if (role === 'admin') {
+                permissions = {
+                    canEditFichas: true,
+                    canCreateFichas: true,
+                    canDeleteFichas: true,
+                    canCreateCadernoVisitas: true,
+                    canEditCadernoVisitas: true,
+                    canViewAll: true,
+                    roleName: 'Administrador (Ten)'
+                };
+            } else if (role === 'moderador') {
+                permissions = {
+                    canEditFichas: false,
+                    canCreateFichas: false,
+                    canDeleteFichas: false,
+                    canCreateCadernoVisitas: true,
+                    canEditCadernoVisitas: true,
+                    canViewAll: true,
+                    roleName: 'Moderador (Aux, Enf)'
+                };
+            } else if (role === 'visitante') {
+                permissions = {
+                    canEditFichas: false,
+                    canCreateFichas: false,
+                    canDeleteFichas: false,
+                    canCreateCadernoVisitas: false,
+                    canEditCadernoVisitas: false,
+                    canViewAll: true,
+                    roleName: 'Visitante (Estagiário)'
+                };
+            }
+            
+            return permissions;
+        }
+        
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+        }
+        
+        function hideMessages() {
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+        }
+        
+        // ========== FUNÇÕES GLOBAIS PARA CONTROLE DE PERMISSÕES ==========
+        
+        // Função para mostrar alerta de permissão (será usada em outras páginas)
+        window.showPermissionAlert = function(message, type = 'error') {
+            // Remover alertas anteriores
+            const existingAlerts = document.querySelectorAll('.permission-alert');
+            existingAlerts.forEach(alert => alert.remove());
+            
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `permission-alert ${type}`;
+            alertDiv.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 9V11M12 15H12.01M5.07183 19H18.9282C20.4678 19 21.4301 17.3333 20.6603 16L13.7321 4C12.9623 2.66667 11.0378 2.66667 10.268 4L3.33978 16C2.56998 17.3333 3.53223 19 5.07183 19Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>${message}</span>
+                <button class="permission-alert-close">&times;</button>
+            `;
+            
+            document.body.appendChild(alertDiv);
+            
+            alertDiv.querySelector('.permission-alert-close').addEventListener('click', () => {
+                alertDiv.remove();
+            });
+            
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.style.animation = 'slideInRight 0.3s ease reverse';
+                    setTimeout(() => {
+                        if (alertDiv.parentNode) {
+                            alertDiv.remove();
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        };
+        
+        // Função para verificar permissões (será usada em outras páginas)
+        window.checkUserPermissions = function() {
+            const userRole = localStorage.getItem('userRole');
+            const permissions = JSON.parse(localStorage.getItem('userPermissions') || '{}');
+            const loginTime = localStorage.getItem('loginTime');
+            
+            // Se não tem informações de login, retorna null
+            if (!userRole || !permissions || !loginTime) {
+                return null;
+            }
+            
+            return { 
+                role: userRole, 
+                permissions: permissions,
+                username: localStorage.getItem('currentUser')
+            };
+        };
+        
+        // Função para verificar permissão específica
+        window.hasPermission = function(permissionName) {
+            const userData = window.checkUserPermissions();
+            if (!userData) return false;
+            
+            return userData.permissions[permissionName] || false;
+        };
+        
+        // Função para bloquear ação se não tiver permissão
+        window.blockIfNoPermission = function(permissionName, actionName) {
+            if (!window.hasPermission(permissionName)) {
+                window.showPermissionAlert(
+                    `Você não possui permissão para ${actionName}. Contate um administrador.`,
+                    'error'
+                );
+                return true; // Bloqueado
+            }
+            return false; // Permissão concedida
+        };
+        
+        // Função para obter nome do cargo formatado
+        window.getUserRoleName = function() {
+            const userData = window.checkUserPermissions();
+            return userData ? userData.permissions.roleName : 'Não autenticado';
+        };
+        
+        // Inicializar a página quando carregar
+        document.addEventListener('DOMContentLoaded', initLoginPage);
+    </script>
+</body>
+</html>
