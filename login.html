@@ -13,25 +13,117 @@
         }
         
         body {
-            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+            background: 
+                linear-gradient(rgba(0, 30, 0, 0.85), rgba(0, 40, 0, 0.9)),
+                url('https://images.unsplash.com/photo-1513279922550-250c2129b13a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             min-height: 100vh;
             overflow-x: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+        }
+        
+        /* Elementos decorativos militares */
+        .military-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .decoration-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(90deg, 
+                rgba(139, 0, 0, 0.3) 0%, 
+                rgba(0, 100, 0, 0.6) 30%, 
+                rgba(0, 100, 0, 0.6) 70%, 
+                rgba(139, 0, 0, 0.3) 100%);
+            border-bottom: 2px solid rgba(210, 180, 140, 0.5);
+        }
+        
+        .decoration-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(90deg, 
+                rgba(0, 100, 0, 0.6) 0%, 
+                rgba(139, 0, 0, 0.3) 30%, 
+                rgba(139, 0, 0, 0.3) 70%, 
+                rgba(0, 100, 0, 0.6) 100%);
+            border-top: 2px solid rgba(210, 180, 140, 0.5);
+        }
+        
+        .horse-silhouette {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            height: 150px;
+            opacity: 0.15;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23D2B48C' d='M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zM130.7 359.9c-23.6-23.6-23.6-61.8 0-85.4s61.8-23.6 85.4 0 23.6 61.8 0 85.4-61.8 23.6-85.4 0zm80.4-140.1c-23.6-23.6-23.6-61.8 0-85.4s61.8-23.6 85.4 0 23.6 61.8 0 85.4-61.8 23.6-85.4 0zm149 121.9c-23.6-23.6-23.6-61.8 0-85.4s61.8-23.6 85.4 0 23.6 61.8 0 85.4-61.8 23.6-85.4 0z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .military-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 100px;
+            background: rgba(0, 50, 0, 0.7);
+            border: 2px solid #D2B48C;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #D2B48C;
+            font-size: 12px;
+            text-align: center;
+            padding: 5px;
+        }
+        
+        .military-badge:before {
+            content: "2º RCG";
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .military-badge:after {
+            content: "Veterinária";
+            font-size: 10px;
         }
         
         .login-container {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(0, 100, 0, 0.2),
+                0 0 0 4px rgba(210, 180, 140, 0.3);
             width: 100%;
             max-width: 450px;
             padding: 30px;
             position: relative;
             overflow: hidden;
             transition: transform 0.5s ease, opacity 0.5s ease;
+            z-index: 1;
+            border: 2px solid rgba(0, 100, 0, 0.5);
         }
         
         .login-container::before {
@@ -41,7 +133,8 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, #2c7fb8, #7fcdbb);
+            background: linear-gradient(90deg, #8B0000, #006400, #8B0000);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .logo {
@@ -50,34 +143,63 @@
         }
         
         .logo-image {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             margin: 0 auto 15px;
             border-radius: 50%;
-            background-color: #f0f8ff;
+            background: linear-gradient(135deg, #8B0000, #006400);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid #2c7fb8;
+            border: 4px solid #D2B48C;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .logo-image:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 2px, transparent 2px),
+                radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 20px 20px;
         }
         
         .logo-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
         
         .logo h1 {
-            color: #2c7fb8;
-            font-size: 26px;
+            color: #006400;
+            font-size: 28px;
             margin-bottom: 5px;
             font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            letter-spacing: 0.5px;
         }
         
         .logo p {
-            color: #666;
-            font-size: 15px;
+            color: #8B0000;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .military-subtitle {
+            color: #333;
+            font-size: 14px;
+            margin-top: 5px;
+            font-style: italic;
+            border-top: 1px dashed #8B0000;
+            padding-top: 5px;
+            display: inline-block;
         }
         
         .login-form {
@@ -94,22 +216,29 @@
             display: block;
             margin-bottom: 8px;
             color: #333;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #006400;
         }
         
         input, select {
             width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
+            padding: 14px 15px;
+            border: 2px solid #D2B48C;
             border-radius: 8px;
             font-size: 16px;
             transition: all 0.3s;
+            background-color: rgba(255, 253, 250, 0.9);
+            color: #333;
         }
         
         input:focus, select:focus {
-            border-color: #2c7fb8;
+            border-color: #8B0000;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(44, 127, 184, 0.2);
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.2);
+            background-color: white;
         }
         
         .password-container {
@@ -124,46 +253,78 @@
             background: none;
             border: none;
             cursor: pointer;
-            color: #666;
+            color: #8B0000;
             padding: 5px;
+            background: rgba(255, 253, 250, 0.9);
+            border-radius: 4px;
         }
         
         .toggle-password:hover {
-            color: #2c7fb8;
+            color: #006400;
+            background: rgba(210, 180, 140, 0.3);
         }
         
         .btn-login {
-            background: linear-gradient(to right, #2c7fb8, #7fcdbb);
+            background: linear-gradient(to right, #8B0000, #006400);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 15px;
             border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             margin-top: 10px;
-            box-shadow: 0 4px 10px rgba(44, 127, 184, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
         
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(44, 127, 184, 0.4);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn-login:active {
+            transform: translateY(0);
+        }
+        
+        .btn-login:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-login:hover:before {
+            left: 100%;
         }
         
         .permissions-info {
             margin-top: 25px;
             padding: 18px;
-            background-color: #f8f9fa;
+            background-color: rgba(210, 180, 140, 0.1);
             border-radius: 8px;
             font-size: 14px;
-            border-left: 4px solid #2c7fb8;
+            border-left: 4px solid #8B0000;
+            border-right: 1px solid #D2B48C;
+            border-top: 1px solid #D2B48C;
+            border-bottom: 1px solid #D2B48C;
         }
         
         .permissions-info h3 {
-            color: #2c7fb8;
+            color: #006400;
             margin-bottom: 10px;
             font-size: 16px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #D2B48C;
+            padding-bottom: 5px;
         }
         
         .permissions-info ul {
@@ -175,50 +336,75 @@
             margin-bottom: 8px;
             padding-left: 20px;
             position: relative;
+            color: #333;
         }
         
         .permissions-info li:before {
-            content: "•";
-            color: #2c7fb8;
+            content: "➤";
+            color: #8B0000;
             position: absolute;
             left: 0;
             font-weight: bold;
         }
         
+        .permissions-info li strong {
+            color: #006400;
+        }
+        
+        .permissions-info p {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            border-top: 1px dashed #8B0000;
+            padding-top: 8px;
+        }
+        
         .error-message {
-            color: #e74c3c;
+            color: #8B0000;
             font-size: 14px;
             margin-top: 10px;
             text-align: center;
             display: none;
             padding: 10px;
-            background-color: #ffeaea;
+            background-color: rgba(139, 0, 0, 0.1);
             border-radius: 5px;
+            border: 1px solid #8B0000;
+            font-weight: 500;
         }
         
         .success-message {
-            color: #27ae60;
+            color: #006400;
             font-size: 14px;
             margin-top: 10px;
             text-align: center;
             display: none;
             padding: 10px;
-            background-color: #eafaf1;
+            background-color: rgba(0, 100, 0, 0.1);
             border-radius: 5px;
+            border: 1px solid #006400;
+            font-weight: 500;
         }
         
         .password-hint {
             font-size: 12px;
-            color: #666;
+            color: #8B0000;
             margin-top: 5px;
             font-style: italic;
+            padding-left: 5px;
         }
         
         .footer {
             text-align: center;
             margin-top: 20px;
-            color: #888;
+            color: #666;
             font-size: 12px;
+            border-top: 1px solid #D2B48C;
+            padding-top: 15px;
+        }
+        
+        .footer strong {
+            color: #006400;
         }
         
         @media (max-width: 480px) {
@@ -234,6 +420,21 @@
             .logo h1 {
                 font-size: 22px;
             }
+            
+            .military-badge {
+                width: 60px;
+                height: 80px;
+                font-size: 10px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .horse-silhouette {
+                width: 100px;
+                height: 75px;
+                bottom: 10px;
+                right: 10px;
+            }
         }
         
         /* Estilo para alerta de permissão */
@@ -241,25 +442,28 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
             color: white;
             padding: 15px 20px;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.4);
             z-index: 9999;
             display: flex;
             align-items: center;
             gap: 10px;
             animation: slideInRight 0.3s ease;
             max-width: 400px;
+            border: 1px solid #D2B48C;
         }
         
         .permission-alert.warning {
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            background: linear-gradient(135deg, #D2B48C 0%, #B8860B 100%);
+            color: #333;
         }
         
         .permission-alert.info {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            background: linear-gradient(135deg, #006400 0%, #004d00 100%);
+            color: white;
         }
         
         @keyframes slideInRight {
@@ -316,31 +520,40 @@
     </style>
 </head>
 <body>
+    <!-- Decorações militares -->
+    <div class="military-decoration">
+        <div class="decoration-top"></div>
+        <div class="decoration-bottom"></div>
+        <div class="horse-silhouette"></div>
+        <div class="military-badge"></div>
+    </div>
+    
     <div class="login-container">
         <div class="logo">
             <div class="logo-image">
-                <img src="2-rcg-926x926 (1).jpg" alt="Logo Veterinária" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iNjAiIGZpbGw9IiMyYzdmYjgiLz4KPHRleHQgeD0iNjAiIHk9IjYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+VmV0PC90ZXh0Pgo8L3N2Zz4K'">
+                <img src="2-rcg-926x926 (1).jpg" alt="Logo Veterinária" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iNjAiIGZpbGw9IiMwMDY0MDAiLz4KPHBhdGggZD0iTTQwIDQwSDUwVjUwSDQwVjQwWiIgZmlsbD0iI0QyQjQ4QyIvPgo8cGF0aCBkPSJNNzAgNDBINjBWNTBINzBWNDBaIiBmaWxsPSIjRDJCNDhDIi8+CjxwYXRoIGQ9Ik00NSA2MEg3NVY4MEg0NVY2MFoiIGZpbGw9IiNEMkI0OEMiLz4KPHBhdGggZD0iTTU1IDMwSDY1VjQwSDU1VjMwWiIgZmlsbD0iI0QyQjQ4QyIvPgo8Y2lyY2xlIGN4PSI2MCIgY3k9IjUwIiByPSI1IiBmaWxsPSIjOEIwMDAwIi8+CjxwYXRoIGQ9Ik01MCAyMEg3MFYzMEg1MFYyMFoiIGZpbGw9IiNEMkI0OEMiLz4KPC9zdmc+'">
             </div>
-            <h1>Vet 2°rcg System</h1>
-            <p>Sistema de Gestão Veterinária</p>
+            <h1>Vet 2° RCG System</h1>
+            <p>SALÃO VETERINÁRIO DO EXÉRCITO</p>
+            <div class="military-subtitle">Sistema de Gestão Veterinária Equina</div>
         </div>
         
         <form class="login-form" id="loginForm">
             <div class="form-group">
-                <label for="role">Cargo</label>
+                <label for="role">Cargo / Posto</label>
                 <select id="role" required>
                     <option value="">Selecione seu cargo</option>
-                    <option value="admin">Administrador (Ten)</option>
-                    <option value="moderador">Moderador (Aux, Enf)</option>
+                    <option value="admin">Administrador (Oficial - Ten)</option>
+                    <option value="moderador">Moderador (Auxiliar / Enfermeiro)</option>
                     <option value="visitante">Visitante (Estagiário)</option>
                 </select>
             </div>
             
             <div class="form-group">
-                <label for="username">Usuário</label>
-                <input type="text" id="username" placeholder="Digite seu usuário" required>
+                <label for="username">Identificação Militar</label>
+                <input type="text" id="username" placeholder="Digite sua identificação" required>
                 <select id="adminUsers" style="display: none; margin-top: 10px;">
-                    <option value="">Selecione um administrador</option>
+                    <option value="">Selecione um oficial</option>
                     <option value="Maj. Cristovam">Maj. Cristovam</option>
                     <option value="Ten. Henrique">Ten. Henrique</option>
                     <option value="Ten. Espinho">Ten. Espinho</option>
@@ -349,9 +562,9 @@
                     <option value="Ten. Thayanne">Ten. Thayanne</option>
                 </select>
                 <select id="moderadorUsers" style="display: none; margin-top: 10px;">
-                    <option value="">Selecione um moderador</option>
-                    <option value="CB De Lima">CB De Lima</option>
+                    <option value="">Selecione um auxiliar/enfermeiro</option>
                     <option value="CB Bittencourt">CB Bittencourt</option>
+                    <option value="CB De Lima">CB De Lima</option>
                     <option value="SD Vergílio">SD Vergílio</option>
                     <option value="SD Cardoso">SD Cardoso</option>
                     <option value="SD André Vitoria">SD André Vitoria</option>
@@ -371,7 +584,7 @@
             </div>
             
             <div class="form-group">
-                <label for="password">Senha</label>
+                <label for="password">Senha de Acesso</label>
                 <div class="password-container">
                     <input type="password" id="password" placeholder="Digite a senha do seu cargo" required>
                     <button type="button" class="toggle-password" id="togglePassword">
@@ -384,31 +597,32 @@
                 <div class="password-hint" id="passwordHint"></div>
             </div>
             
-            <button type="submit" class="btn-login">Entrar no Sistema</button>
+            <button type="submit" class="btn-login">ACESSAR SISTEMA</button>
             
             <div class="error-message" id="errorMessage">
                 Senha incorreta para este cargo. Tente novamente.
             </div>
             
             <div class="success-message" id="successMessage">
-                Login realizado com sucesso! Redirecionando...
+                Acesso autorizado! Redirecionando para o sistema...
             </div>
         </form>
         
         <div class="permissions-info">
-            <h3>Permissões do Sistema</h3>
+            <h3>Níveis de Permissão do Sistema</h3>
             <ul>
-                <li><strong>Administrador (Ten):</strong> Acesso total</li>
-                <li><strong>Moderador (Aux, Enf):</strong> Acesso limitado</li>
-                <li><strong>Visitante (Estagiário):</strong> Apenas consulta</li>
+                <li><strong>Oficial (Ten):</strong> Acesso total ao sistema - Controle completo</li>
+                <li><strong>Auxiliar/Enfermeiro:</strong> Visualiza fichas - Edita/cria caderno de visitas - Registra novas cólicas</li>
+                <li><strong>Estagiário:</strong> Acesso somente para consulta - Sem permissão de edição</li>
             </ul>
-            <p style="margin-top: 10px; font-size: 12px; color: #666;">
-                <strong>Aviso:</strong> Ações não permitidas mostrarão mensagem de erro. Entre em contato com o oficial veterinaria para qualquer alteração.
+            <p>
+                <strong>Aviso:</strong> Ações não permitidas mostrarão mensagem de restrição.
             </p>
         </div>
         
         <div class="footer">
-            &copy; 2025 Vet2°rcg System - Todos os direitos reservados
+            <strong>Sistema Veterinário 2° RCG</strong> &copy; 2025 - Todos os direitos reservados<br>
+            <span style="font-size: 11px;">Versão 2.1 | Para uso exclusivo do Exército Brasileiro</span>
         </div>
     </div>
 
@@ -485,7 +699,7 @@
             });
             
             // Exibir mensagem de boas-vindas
-            console.log('Sistema Veterinário - Tela de Login carregada');
+            console.log('Sistema Veterinário Militar - Tela de Login carregada');
         }
         
         function handleRoleChange() {
@@ -538,7 +752,7 @@
             if (type === 'text') {
                 this.innerHTML = `
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.94 17.94C16.2306 19.243 14.1491 19.9649 12 20C5 20 1 12 1 12C2.24389 9.68192 3.96914 7.65663 6.06 6.06006M9.9 4.24006C10.5883 4.0789 11.2931 3.99836 12 4.00006C19 4.00006 23 12 23 12C22.393 13.1356 21.6691 14.2048 20.84 15.19M14.12 14.12C13.8454 14.4148 13.5141 14.6512 13.1462 14.8151C12.7782 14.9791 12.3809 15.0673 11.9781 15.0744C11.5753 15.0815 11.1752 15.0074 10.8016 14.8565C10.4281 14.7056 10.0887 14.4811 9.80385 14.1962C9.51897 13.9113 9.29439 13.572 9.14351 13.1984C8.99262 12.8249 8.91853 12.4247 8.92563 12.0219C8.93274 11.6191 9.02091 11.2219 9.18488 10.8539C9.34884 10.4859 9.58525 10.1547 9.88 9.88006" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17.94 17.94C16.2306 19.243 14.1491 19.9649 12 20C5 20 1 12 1 12C2.24389 9.68192 3.96914 7.65663 6.06 6.06006M9.9 4.24006C10.5883 4.0789 11.2931 3.99836 12 4.00006C19 4.00006 23 12 23 12C22.393 13.1356 21.6691 14.2048 20.84 15.19M14.12 14.12C13.8454 14.4148 13.5141 14.6512 13.1462 14.8151C12.7782 14.9791 12.3809 15.0673 11.9781 15.0744C11.5753 15.0815 11.1752 15.0074 10.8016 14.8565C10.4281 14.7056 10.0887 14.4811 9.80385 14.1962C9.51897 13.9113 9.29439 13.572 9.14351 13.1984C8.99262 12.8249 8.91853 12.4247 8.92563 12.0219C8.93274 11.6191 8.02091 11.2219 8.18488 10.8539C8.34884 10.4859 8.58525 10.1547 8.88 9.88006" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M1 1L23 23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 `;
@@ -567,7 +781,7 @@
             }
             
             if (!username) {
-                showError('Por favor, preencha o usuário.');
+                showError('Por favor, preencha a identificação.');
                 usernameInput.focus();
                 return;
             }
@@ -601,7 +815,7 @@
                 }
                 
                 // Mensagem de log
-                console.log(`Login realizado: ${username} (${role})`);
+                console.log(`Acesso autorizado: ${username} (${role}) - ${new Date().toLocaleString()}`);
                 
                 // Redirecionar para a tela do sistema após 1 segundo
                 setTimeout(function() {
@@ -620,7 +834,7 @@
                 }, 500);
                 
                 // Log de tentativa falha
-                console.warn(`Tentativa de login falhou para: ${username} (${role})`);
+                console.warn(`Tentativa de acesso recusada para: ${username} (${role}) - ${new Date().toLocaleString()}`);
             }
         }
         
@@ -631,7 +845,13 @@
                 canDeleteFichas: false,
                 canCreateCadernoVisitas: false,
                 canEditCadernoVisitas: false,
+                canDeleteCadernoVisitas: false,
+                canCreateColica: false,
+                canEditColica: false,
+                canDeleteColica: false,
                 canViewAll: false,
+                canExportData: false,
+                canManageUsers: false,
                 roleName: ''
             };
             
@@ -642,7 +862,13 @@
                     canDeleteFichas: true,
                     canCreateCadernoVisitas: true,
                     canEditCadernoVisitas: true,
+                    canDeleteCadernoVisitas: true,
+                    canCreateColica: true,
+                    canEditColica: true,
+                    canDeleteColica: true,
                     canViewAll: true,
+                    canExportData: true,
+                    canManageUsers: true,
                     roleName: 'Administrador (Ten)'
                 };
             } else if (role === 'moderador') {
@@ -652,7 +878,13 @@
                     canDeleteFichas: false,
                     canCreateCadernoVisitas: true,
                     canEditCadernoVisitas: true,
+                    canDeleteCadernoVisitas: false,
+                    canCreateColica: true,
+                    canEditColica: false,
+                    canDeleteColica: false,
                     canViewAll: true,
+                    canExportData: false,
+                    canManageUsers: false,
                     roleName: 'Moderador (Aux, Enf)'
                 };
             } else if (role === 'visitante') {
@@ -662,7 +894,13 @@
                     canDeleteFichas: false,
                     canCreateCadernoVisitas: false,
                     canEditCadernoVisitas: false,
+                    canDeleteCadernoVisitas: false,
+                    canCreateColica: false,
+                    canEditColica: false,
+                    canDeleteColica: false,
                     canViewAll: true,
+                    canExportData: false,
+                    canManageUsers: false,
                     roleName: 'Visitante (Estagiário)'
                 };
             }
@@ -747,7 +985,7 @@
         window.blockIfNoPermission = function(permissionName, actionName) {
             if (!window.hasPermission(permissionName)) {
                 window.showPermissionAlert(
-                    `Você não possui permissão para ${actionName}. Contate um administrador.`,
+                    `Você não possui permissão para ${actionName}. Contate um oficial.`,
                     'error'
                 );
                 return true; // Bloqueado
